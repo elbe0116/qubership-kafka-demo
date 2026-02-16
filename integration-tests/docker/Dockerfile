@@ -1,4 +1,4 @@
-FROM ghcr.io/netcracker/qubership-docker-integration-tests:0.1.20
+FROM ghcr.io/netcracker/qubership-docker-integration-tests:main
 
 ENV ROBOT_OUTPUT=${ROBOT_HOME}/output \
     DISTR_DIR=/tmp/deps \
@@ -22,6 +22,15 @@ RUN set -x \
     && pip3 install -r ${ROBOT_HOME}/requirements.txt \
     && rm -rf /var/cache/apk/*
 
+# Switch to root temporarily to set correct permissions for AWS EKS security policies.
+# The base image includes S3 adapter scripts that require write access to output directories.
+# AWS EKS enforces non-root user execution, so we set ownership to user 1000 (non-root)
+# and group 0 (root group) to allow proper file operations within the container.
+USER root
+RUN chown -R 1000:0 /opt/robot && \
+    chmod -R g+rwX /opt/robot
+
+# Run as non-root user for security compliance with AWS EKS policies
 USER 1000:0
 
 # Expose the port
