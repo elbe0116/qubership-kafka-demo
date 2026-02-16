@@ -63,6 +63,9 @@ jobs:
           # Build helm arguments dynamically (only add non-empty values)
           HELM_ARGS=""
           
+          # Enable Kafka deployment via deployDescriptor
+          HELM_ARGS="$HELM_ARGS --set deployDescriptor=true"
+          
           # Enable integration tests and set test tags (empty = all tests)
           HELM_ARGS="$HELM_ARGS --set integrationTests.install=true"
           HELM_ARGS="$HELM_ARGS --set integrationTests.tags=${{ github.event.inputs.test_tags }}"
