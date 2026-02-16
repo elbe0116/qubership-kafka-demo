@@ -143,7 +143,7 @@ jobs:
           # Using temp file to avoid shell escaping issues with spaces and special chars
           cat > /tmp/monitored-images-values.yaml << 'EOF'
           integrationTests:
-            monitoredImages: "deployment kafka-service-operator kafka-service-operator ghcr.io:443/netcracker/qubership-kafka-service-operator:main,deployment kafka-1 kafka ghcr.io:443/netcracker/qubership-docker-kafka:main,deployment kafka-2 kafka ghcr.io:443/netcracker/qubership-docker-kafka:main,deployment kafka-3 kafka ghcr.io:443/netcracker/qubership-docker-kafka:main,deployment kafka-monitoring kafka-monitoring ghcr.io:443/netcracker/qubership-kafka-monitoring:main,deployment kafka-backup-daemon kafka-backup-daemon ghcr.io:443/netcracker/qubership-kafka-backup-daemon:main,deployment kafka-integration-tests-runner kafka-integration-tests-runner ghcr.io:443/elbe0116/qubership-kafka-integration-tests:PSUPATPOS-63"
+            monitoredImages: "deployment kafka-service-operator kafka-service-operator ghcr.io:443/netcracker/qubership-kafka-service-operator:main,deployment kafka-1 kafka ghcr.io:443/netcracker/qubership-docker-kafka:main,deployment kafka-2 kafka ghcr.io:443/netcracker/qubership-docker-kafka:main,deployment kafka-3 kafka ghcr.io:443/netcracker/qubership-docker-kafka:main,deployment kafka-monitoring kafka-monitoring ghcr.io:443/netcracker/qubership-kafka-monitoring:main,deployment kafka-backup-daemon kafka-backup-daemon ghcr.io:443/netcracker/qubership-kafka-backup-daemon:main,deployment kafka-integration-tests-runner kafka-integration-tests-runner ghcr.io:443/elbe0116/qubership-kafka-integration-tests:main"
           EOF
           HELM_ARGS="$HELM_ARGS -f /tmp/monitored-images-values.yaml"
           
