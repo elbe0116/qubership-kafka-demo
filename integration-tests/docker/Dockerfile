@@ -12,9 +12,6 @@ COPY docker/requirements.txt ${ROBOT_HOME}/requirements.txt
 COPY docker/kafka_pods_checker.py ${ROBOT_HOME}/kafka_pods_checker.py
 COPY robot ${ROBOT_HOME}
 
-# Upgrade all tools to avoid vulnerabilities
-RUN set -x && apk upgrade --no-cache --available
-
 RUN set -x \
     && pip3 install -r ${ROBOT_HOME}/requirements.txt \
     && rm -rf /var/cache/apk/*
