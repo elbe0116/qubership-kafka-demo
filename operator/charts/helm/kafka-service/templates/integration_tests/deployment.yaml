@@ -177,7 +177,7 @@ spec:
               value: {{ .Values.integrationTests.atpReportViewUiUrl | quote }}
             {{- end }}
             {{- if .Values.integrationTests.environmentName }}
-            - name: ATP_ENVIRONMENT_NAME
+            - name: ENVIRONMENT_NAME
               value: {{ .Values.integrationTests.environmentName | quote }}
             {{- end }}
             {{- if .Values.integrationTests.monitoredImages }}
